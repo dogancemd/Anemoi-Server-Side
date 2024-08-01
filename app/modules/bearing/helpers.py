@@ -1,5 +1,10 @@
 from geographiclib.geodesic import Geodesic
 
+locations = {
+    "dcem": (39.891878, 32.783405),
+    "niki": (47.4979, 19.0402)
+}
+
 
 def get_bearing(point1, point2):
     lat1, long1 = point1

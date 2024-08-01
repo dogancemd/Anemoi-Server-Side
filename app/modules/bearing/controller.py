@@ -1,15 +1,16 @@
 from run import application, request
 import json
-from app.modules.bearing.helpers import get_bearing
+from app.modules.bearing.helpers import get_bearing, locations
 
 
 
-@application.route('/get_bearings', methods=['GET'])
+@application.route('/get_bearings', methods=['POST'])
 def get_bearings():
     try:
-        point1 = (39.891878,32.783405)
-        point2 = (request.json.get('latitude'), request.json.get('longitude'))
-        bearing = get_bearing(point1, point2)
+        user_point = (request.json.get('latitude'), request.json.get('longitude'))
+        lover_point = (locations[request.json.get('lover')])
+        locations[request.json.get('user')] = user_point
+        bearing = get_bearing(user_point, lover_point)
         response = {"bearing": bearing, "success": True}
 
     except Exception as e:
